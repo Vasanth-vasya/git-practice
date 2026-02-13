@@ -1,3 +1,5 @@
 Hi This is my 1st git practice file learning devops 
 git is tracking my changes
 
+bad code
+Login feature code
