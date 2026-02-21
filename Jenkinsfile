@@ -5,12 +5,14 @@ pipeline {
         stage('Start Website') {
             steps {
                 sh '''
-                echo "Stopping old server"
+                echo "Kill old server"
                 pkill -f "http.server 9000" || true
 
-                echo "Starting server"
+                echo "Starting persistent server"
                 cd $WORKSPACE
-               /usr/local/bin/python3 -m http.server 9000 &
+
+                nohup /usr/local/bin/python3 -m http.server 9000 > server.log 2>&1 &
+                sleep 2
                 '''
             }
         }
