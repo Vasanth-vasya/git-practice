@@ -2,22 +2,15 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/Vasanth-vasya/git-practice.git'
-            }
-        }
-
-        stage('Run Website') {
+        stage('Start Website') {
             steps {
                 sh '''
-                echo "Stopping old server if running..."
+                echo "Stopping old server"
                 pkill -f "http.server 9000" || true
 
-                echo "Starting website..."
+                echo "Starting server"
                 cd $WORKSPACE
-                nohup python3 -m http.server 9000 > server.log 2>&1 &
+               /usr/local/bin/python3 -m http.server 9000 &
                 '''
             }
         }
